@@ -1,4 +1,23 @@
-operate('add', 2, 4);
+input = document.querySelector('');
+
+//Display value of button pushed
+button.addEventListener("click" function() {
+	
+	
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function add (a, b) {
 	return a + b;
@@ -56,12 +75,11 @@ function operate(operand, a, b) {
 }
 
 /*
-module.exports = {
-	add,
-	subtract,
-	sum,
-	multiply,
-    power,
-	factorial
-}
+TO DO:
+
+- 
+- Add input from keyboard
+
+
+
 */
