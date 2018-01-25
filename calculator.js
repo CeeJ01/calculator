@@ -2,36 +2,35 @@ let buttons = document.querySelectorAll('.number, .operator');
 let input = '';
 let displayValue = '';
 let storeVals =[];
+let isOperating = false;
+
 
 //Display value of button pushed
 buttons.forEach((button) => { 
   button.addEventListener('click', () => { 
 	input = button.value;
 
-	/*
-	TODO:
-	if operate => operate()
-
-	if digit => store digit()
-
-	else => error
-	*/
-
-	//store each number and display
-
 	if (input >= '0' && input <= '9'){
 		displayValue = "" + displayValue + input;
 		console.log(displayValue);
+		isOperating = false;
 	}
+
 
 	else {
-		storeVals.push(displayValue);
-		console.log("input: " + input + ", storeVals: " + storeVals);	
-		displayValue = "";
+		if (isOperating == false) {
+			storeVals.push(displayValue);			
+			console.log("Operation: " + input + ", storeVals: " + storeVals);
 
+			//pass a operation function for which 
+			operate()
+
+
+			displayValue = "";
+			isOperating = true;
+		}	
 	}
-
-
+  
   });
 });
 
@@ -96,8 +95,8 @@ function operate(operand, a, b) {
 /*
 TO DO:
 
-- 
-- Add input from keyboard
+- Add operations
+- add event listener for keyboard support
 
 
 
