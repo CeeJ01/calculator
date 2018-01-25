@@ -1,20 +1,39 @@
-input = document.querySelector('');
+let buttons = document.querySelectorAll('.number, .operator');
+let input = '';
+let displayValue = '';
+let storeVals =[];
 
 //Display value of button pushed
-button.addEventListener("click" function() {
-	
-	
-})
+buttons.forEach((button) => { 
+  button.addEventListener('click', () => { 
+	input = button.value;
+
+	/*
+	TODO:
+	if operate => operate()
+
+	if digit => store digit()
+
+	else => error
+	*/
+
+	//store each number and display
+
+	if (input >= '0' && input <= '9'){
+		displayValue = "" + displayValue + input;
+		console.log(displayValue);
+	}
+
+	else {
+		storeVals.push(displayValue);
+		console.log("input: " + input + ", storeVals: " + storeVals);	
+		displayValue = "";
+
+	}
 
 
-
-
-
-
-
-
-
-
+  });
+});
 
 
 
