@@ -1,7 +1,8 @@
 let buttons = document.querySelectorAll('.number, .operator');
 let input = '';
 let displayValue = '';
-let storeVals =[];
+let storeVals = [];
+let storeOpers = [];
 let isOperating = false;
 
 
@@ -11,33 +12,27 @@ buttons.forEach((button) => {
 	input = button.value;
 
 	if (input >= '0' && input <= '9'){
-		displayValue = "" + displayValue + input;
+		displayValue = Number("" + displayValue + input); //appends each digit to the end
 		console.log(displayValue);
 		isOperating = false;
 	}
 
-
 	else {
-		if (isOperating == false) {
+		if (isOperating == false) { //So an operator can only be hit once. ie only between numbers
 			storeVals.push(displayValue);			
-			console.log("Operation: " + input + ", storeVals: " + storeVals);
-
-			//pass a operation function for which 
-			operate()
-
-
+			storeOpers.push(input);
+			console.log("Operations: " + storeOpers + ", storeVals: " + storeVals);
+			operate(input, storeVals[(storeVals.length) - 2], storeVals[(storeVals.length) - 1]);
 			displayValue = "";
 			isOperating = true;
 		}	
 	}
-  
   });
 });
 
-
-
-
 function add (a, b) {
+	parseInt(a,10);
+	parseInt(b,10);
 	return a + b;
 }
 
@@ -76,16 +71,16 @@ function factorial(n) {
 
 function operate(operand, a, b) {
 	switch(operand) {
-		case "add":
-			console.log(add(a,b));
+		case "+":
+			console.log("add: " + add(a,b));
 			break;
-		case "subtract":
+		case "-":
 			console.log(subtract(a,b));
 			break;
-		case "multiply":
+		case "*":
 			console.log(multiply(a,b));
 			break;
-		case "divide":
+		case "/":
 			console.log(divide(a,b));
 			break;	
 	}
