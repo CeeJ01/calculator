@@ -1,39 +1,27 @@
-let buttons = document.querySelectorAll('.number, .operator');
+
 
 let displayValue = '';
-let valArray = [];
-let operArray = [];
+let valArray = [];	//store history of numbers
+let operArray = [];	//Stores history of operations
+let dispString = ""; 	//combination of valArray and operArray
 let isOperating = true;
 
 
-//Display value of button pushed
-buttons.forEach((button) => { 8
+//Display
+let buttons = document.querySelectorAll('.key, .operator');
+let displayValueString = document.getElementById('display-value');
+
+buttons.forEach((button) => { 
   button.addEventListener('click', () => { 
-	let input = button.value;
+	updateDisplay(button.value);
+  });
+});
 
-	/*
-		1) First Input
-		2) Operation
-		3) Second Input
-		4) Evaluate or Operation
-			a) If (Eval):
-				-> Evaluate
-				-> Display number
-				-> Ready for next Operation
-			b) If (Oper):
-				-> Evaluate
-				-> Display number
-				-> Ready for next Operation
-
-		** If input== '=', Don't push
-
-
-	*/
+function updateDisplay(input) {
 	if (input >= '0' && input <= '9'){
 		displayValue = Number("" + displayValue + input); //appends each digit to the end
-		//Update <p id=displayValue> here:
-		
-		console.log("dV: " + displayValue);
+		dispString = ("" + dispString + input);
+		displayValueString.innerHTML = dispString;
 		isOperating = false;
 	}
 
@@ -46,24 +34,38 @@ buttons.forEach((button) => { 8
 			}
 			switch (input){
 				case '=' :
-					displayValue = orderOperations(valArray,operArray);
-					valArray.push(displayValue);
+					console.log(orderOperations(valArray,operArray));
+					displayValueString.innerHTML = valArray[0];
 					break;
 
 				default :
 					operArray.push(input);
-					console.log(operArray);
+					dispString = ("" + dispString + input);
+					displayValueString.innerHTML = dispString;
 					break;
 			}
 			isOperating = true;
+			console.log(valArray);
 		}
 	}	
-   })
-  })
+
+}
+
+
+//Clear button
+let clear = document.getElementById("clear").addEventListener("click", clearAll);
+
+function clearAll() {
+	displayValue = '';
+	valArray = [];
+	operArray = [];
+	dispString = "";
+	displayValueString.innerHTML = "Cleared.";
+	isOperating = true;
+}
+
 
 function add (a, b) {
-	//parseInt(a,10);
-	//parseInt(b,10);
 	return a + b;
 }
 
@@ -81,9 +83,9 @@ function multiply (multArr) {
 	return multArr.reduce((current, total) => total * current, 1);
 }
 
-// Return divser of 8 sig figs
+// Return divser of 2 sig figs
 function divide (a, b) {
-	return;
+	return (a/b).toFixed(2);
 }
 
 function power(a, b) {
@@ -101,13 +103,6 @@ function factorial(n) {
 }
 
 function orderOperations(numArray, operArray) {
-	/* 	1) get indexes of each: *,/,+,-
-		2) store array of every index of each symbol
-		3) geom[i,j,k,...]
-		4) operate(operArray[i,k,k...],numArray[i,j,k...],numArray[i+1,j+1,k+1])
-		5) consense array after every operation
-		4) arth[n,m,o...]
-	*/
 
 	let multIndices = [];
 	let arthIndices = [];
@@ -116,22 +111,49 @@ function orderOperations(numArray, operArray) {
 	 	if (operArray[i] == '*' ||  operArray[i] == '/'){
 	 		multIndices.push(i);
 	 	}
-	 	if (operArray[i] == '+' ||  operArray[i] == '-'){
-	 		arthIndices.push(i);
-	 	}
 	}
-	console.log("* & /: " + multIndices);
-	console.log("+ & -: " + arthIndices);
+
+	while(0 < multIndices.length){
+		var n = multIndices[0];
+		numArray[n] = operate(operArray[n],numArray[n],numArray[n+1]);
+		multIndices.splice(0,1);
+		numArray.splice(n+1,1);
+		operArray.splice(n,1);
+
+		for (var i = 0; i < multIndices.length; i++) {
+			multIndices[i]--;
+		}
+	}
+
+	while(0 < operArray.length){
+		numArray[0] = operate(operArray[0],numArray[0],numArray[1]);
+		numArray.splice(1,1);
+		operArray.splice(0,1);
+	}
+
+	console.log("Final Answer: " + numArray);
+
+	return numArray;
 }
 
 function operate(operand, a , b) {
+	switch (operand){
+		case '+':
+			return add(a,b);
+			break;
+		case '-':
+			return subtract(a,b);
+			break;
+		case '*':
+			let multArr = [a,b];
+			return multiply(multArr);
+			break;
+		case '/':
+			return divide (a,b);
+			break;
 
-
+	}
 }
-
-
-
-
 
 function isInt(value) {
 	// https://stackoverflow.com/questions/14636536/how-to-check-if-a-variable-is-an-integer-in-javascript#14794066
@@ -143,8 +165,9 @@ function isInt(value) {
 /*
 TO DO:
 
-- Add operations
-- add event listener for keyboard support
+[X] Add operations
+[] add event listener for keyboard support
+[] get rid of excess zeros
 
 
 

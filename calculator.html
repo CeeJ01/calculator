@@ -2,37 +2,36 @@
 <html>
 <head>
 	<title>Calculator</title>
+	<link rel="stylesheet" type="text/css" href="calculator.css" />
 </head>
 <body>
 	<div id="container">
 		<div id="display">
-			<p id="displayValue">DISPLAY</p>
+			<p id="display-value">DISPLAY</p>
 		</div>
-		<div id="input">
-			<div id="button-container">
-				<div id="numbers">
-					<input type="button" class="number" id="key0" value="0">
-					<input type="button" class="number" id="key1" value="1">
-					<input type="button" class="number" id="key2" value="2">
-					<input type="button" class="number" id="key3" value="3">
-					<input type="button" class="number" id="key4" value="4">
-					<input type="button" class="number" id="key5" value="5">
-					<input type="button" class="number" id="key6" value="6">
-					<input type="button" class="number" id="key7" value="7">
-					<input type="button" class="number" id="key8" value="8">
-					<input type="button" class="number" id="key9" value="9">
-				</div>
-				<div id="operators">
-					<input type="button" class="operator" id="add" value="+">
-					<input type="button" class="operator" id="subtract" value="-">
-					<input type="button" class="operator" id="multiply" value="*">
-					<input type="button" class="operator" id="divide" value="/"> 
-					<input type="button" class="operator" id="equate" value="=">
-				</div>
-				<div id="modifiers">
-					<input type="button" class="modifier" id="clear" value="C">
-					<input type="button" class="modifier" id="negate" value="+/-">
-				</div>
+		<div id="button-container" class="container">
+			<div class="numbers-container" id="numbers">
+				<input type="button" class="key key-0" id="key0" value="0">
+				<input type="button" class="key key-1" id="key1" value="1">
+				<input type="button" class="key key-2" id="key2" value="2">
+				<input type="button" class="key key-3" id="key3" value="3">
+				<input type="button" class="key key-4" id="key4" value="4">
+				<input type="button" class="key key-5" id="key5" value="5">
+				<input type="button" class="key key-6" id="key6" value="6">
+				<input type="button" class="key key-7" id="key7" value="7">
+				<input type="button" class="key key-8" id="key8" value="8">
+				<input type="button" class="key key-9" id="key9" value="9">
+			</div>
+			<div id="operators">
+				<input type="button" class="operator" id="add" value="+">
+				<input type="button" class="operator" id="subtract" value="-">
+				<input type="button" class="operator" id="multiply" value="*">
+				<input type="button" class="operator" id="divide" value="/"> 
+				<input type="button" class="operator" id="equate" value="=">
+			</div>
+			<div id="modifiers">
+				<input type="button" class="clear" id="clear" value="C">
+				<input type="button" class="modifier" id="negate" value="+/-">
 			</div>
 		</div>
 	</div>
