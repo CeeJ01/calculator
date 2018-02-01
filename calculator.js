@@ -23,8 +23,6 @@ window.addEventListener('keydown', function (e) {
 
 });
 
-
-
 function updateDisplay(input) {
 	if (input >= '0' && input <= '9'){
 		displayValue = Number("" + displayValue + input); //appends each digit to the end
@@ -38,23 +36,29 @@ function updateDisplay(input) {
 			if(isInt(displayValue)){
 				valArray.push(displayValue);
 				displayValue = "";
-				console.log(valArray);
 			}
 			switch (input){
 				case '=' :
-					console.log(orderOperations(valArray,operArray));
-					displayValueString.innerHTML = valArray[0];
+					orderOperations(valArray,operArray);
+					dispString = valArray[0];
+					displayValueString.innerHTML = dispString;
+					displayValue = dispString;
+					valArray.splice(0,1)
 					//*** Reset the display after equals
+
+
 					break;
 
 				default :
 					operArray.push(input);
 					dispString = ("" + dispString + input);
 					displayValueString.innerHTML = dispString;
+					isOperating = true;
 					break;
 			}
-			isOperating = true;
-			console.log(valArray);
+
+			console.log("valArray: " + valArray);
+			console.log("operAray: " + operArray);
 		}
 	}	
 
@@ -94,7 +98,7 @@ function multiply (multArr) {
 
 // Return divser of 2 sig figs
 function divide (a, b) {
-	return (a/b).toFixed(2);
+	return Number((a/b).toFixed(0));
 }
 
 function power(a, b) {
@@ -175,8 +179,9 @@ function isInt(value) {
 TO DO:
 
 [X] Add operations
-[] add event listener for keyboard support
-[] get rid of excess zeros
+[X] add event listener for keyboard support
+	- [] Add Clear to Keyboard
+[] add dicimal support
 
 
 
