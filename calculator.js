@@ -17,6 +17,14 @@ buttons.forEach((button) => {
   });
 });
 
+window.addEventListener('keydown', function (e) {
+	const keyPad = document.querySelector(`input[data-key="${e.keyCode}"]`);
+	updateDisplay(keyPad.value);
+
+});
+
+
+
 function updateDisplay(input) {
 	if (input >= '0' && input <= '9'){
 		displayValue = Number("" + displayValue + input); //appends each digit to the end
@@ -36,6 +44,7 @@ function updateDisplay(input) {
 				case '=' :
 					console.log(orderOperations(valArray,operArray));
 					displayValueString.innerHTML = valArray[0];
+					//*** Reset the display after equals
 					break;
 
 				default :
