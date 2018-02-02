@@ -1,9 +1,11 @@
  * {
     box-sizing: border-box;
+    background-color: darkgray;
 }
 
 
-p {
+p, b {
+	padding: 7px 15px 7px 10px;
 	text-align: right;
 	font-size: 45px;
 	color: white;
@@ -13,38 +15,44 @@ input {
 	background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 20px 35px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 22px;
 }
 
 #container {
 	background-color: gray;
-	margin: 10px auto;
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+	margin: 0px auto;
 	width: 400px;
 }
 
-.numbers-container {
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr;
+.button-container {
+	display: grid;
+	grid-template-columns: 4fr 1fr;
+	grid-gap: 1px;
+	grid-template-rows: 300px 75px;
+
 }
 
-.key-0 {
-	grid-column-start: 1;
-	grid-column-end: 2; 
+.operator-container {
+	display: flex;
+}
+
+.number-container {
+	padding-right:;
+  	display: grid;
+  	grid-template-columns: repeat(3, 1fr);
+ 	grid-gap: 1px;
+	grid-auto-rows: repeat(4, 1fr);
 }
 
 
 #display {
-	background-color: blue;
+	background-color: lightblue;
 }
-
-
-
-
-
 
 #numbers {
 

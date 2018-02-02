@@ -1,11 +1,8 @@
-
-
 let displayValue = '';
 let valArray = [];	//store history of numbers
 let operArray = [];	//Stores history of operations
 let dispString = ""; 	//combination of valArray and operArray
 let isOperating = true;
-
 
 //Display
 let buttons = document.querySelectorAll('.key, .operator');
@@ -18,9 +15,9 @@ buttons.forEach((button) => {
 });
 
 window.addEventListener('keydown', function (e) {
+	e.preventDefault(); //prevent quick find when dividing
 	const keyPad = document.querySelector(`input[data-key="${e.keyCode}"]`);
 	updateDisplay(keyPad.value);
-
 });
 
 function updateDisplay(input) {
@@ -44,11 +41,7 @@ function updateDisplay(input) {
 					displayValueString.innerHTML = dispString;
 					displayValue = dispString;
 					valArray.splice(0,1)
-					//*** Reset the display after equals
-
-
 					break;
-
 				default :
 					operArray.push(input);
 					dispString = ("" + dispString + input);
@@ -56,18 +49,14 @@ function updateDisplay(input) {
 					isOperating = true;
 					break;
 			}
-
 			console.log("valArray: " + valArray);
 			console.log("operAray: " + operArray);
 		}
 	}	
-
 }
-
 
 //Clear button
 let clear = document.getElementById("clear").addEventListener("click", clearAll);
-
 function clearAll() {
 	displayValue = '';
 	valArray = [];
@@ -84,11 +73,6 @@ function add (a, b) {
 
 function subtract (a, b) {
 	return a - b;
-}
-
-//do we need this?
-function sum (sumArr) {
-	return sumArr.reduce((current, total) => total + current, 0);
 }
 
 //array or only passble by two numbers?
@@ -116,7 +100,6 @@ function factorial(n) {
 }
 
 function orderOperations(numArray, operArray) {
-
 	let multIndices = [];
 	let arthIndices = [];
 
@@ -125,7 +108,6 @@ function orderOperations(numArray, operArray) {
 	 		multIndices.push(i);
 	 	}
 	}
-
 	while(0 < multIndices.length){
 		var n = multIndices[0];
 		numArray[n] = operate(operArray[n],numArray[n],numArray[n+1]);
@@ -137,15 +119,12 @@ function orderOperations(numArray, operArray) {
 			multIndices[i]--;
 		}
 	}
-
 	while(0 < operArray.length){
 		numArray[0] = operate(operArray[0],numArray[0],numArray[1]);
 		numArray.splice(1,1);
 		operArray.splice(0,1);
 	}
-
 	console.log("Final Answer: " + numArray);
-
 	return numArray;
 }
 
@@ -182,7 +161,15 @@ TO DO:
 [X] add event listener for keyboard support
 	- [] Add Clear to Keyboard
 [] add dicimal support
+[] Add backspace
+[] add commas
+[] add txt edit for displayvalue
 
-
+[] Polish Style
+	[] Grid Layout
+	[] Fonts
+	[] Colors
+	[] Sizes
+[] Add Transitions
 
 */

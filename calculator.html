@@ -10,7 +10,14 @@
 			<p id="display-value">DISPLAY</p>
 		</div>
 		<div id="button-container" class="container">
-			<div class="numbers-container" id="numbers">
+			<div class="operator-container" id="operators">
+				<input type="button" class="operator" data-key="107" id="add" value="+">
+				<input type="button" class="operator" data-key="109" id="subtract" value="-">
+				<input type="button" class="operator" data-key="106" id="multiply" value="*">
+				<input type="button" class="operator" data-key="111" id="divide" value="/"> 
+				<input type="button" class="operator" data-key="13" id="equate" value="=">
+			</div>
+			<div class="number-container" id="numbers">
 				<input type="button" class="key key-0" data-key="96" id="key0" value="0">
 				<input type="button" class="key key-1" data-key="97" id="key1" value="1">
 				<input type="button" class="key key-2" data-key="98" id="key2" value="2">
@@ -20,18 +27,13 @@
 				<input type="button" class="key key-6" data-key="102" id="key6" value="6">
 				<input type="button" class="key key-7" data-key="103" id="key7" value="7">
 				<input type="button" class="key key-8" data-key="104" id="key8" value="8">
-				<input type="button" class="key key-9" data-key="105" id="key9" value="9">
-			</div>
-			<div id="operators">
-				<input type="button" class="operator" data-key="107" id="add" value="+">
-				<input type="button" class="operator" data-key="109" id="subtract" value="-">
-				<input type="button" class="operator" data-key="106" id="multiply" value="*">
-				<input type="button" class="operator" data-key="111" id="divide" value="/"> 
-				<input type="button" class="operator" data-key="13" id="equate" value="=">
-			</div>
-			<div id="modifiers">
 				<input type="button" class="clear" id="clear" value="C">
+				<input type="button" class="key key-9" data-key="105" id="key9" value="9">
 				<input type="button" class="modifier" id="negate" value="+/-">
+			</div>
+			<div class="modifier-container" id="modifiers">
+
+
 			</div>
 		</div>
 	</div>
